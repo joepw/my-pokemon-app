@@ -28,7 +28,7 @@ test('should handle POKEMON_LIST_FAIL', () => {
         type: 'POKEMON_LIST_FAIL',
       }
     )
-  ).toEqual({ loading: false, errorMsg: 'Unable to get pokemon' })
+  ).toEqual({ loading: false, errorMsg: 'Unable to get Pokémon' })
 })
 
 test('should handle POKEMON_LIST_SUCCESS', () => {

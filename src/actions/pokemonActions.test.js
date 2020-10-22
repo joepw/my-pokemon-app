@@ -36,7 +36,7 @@ afterAll(() => {
 test('should create an action to get Pokemon list successfully', async () => {
   const store = mockStore({})
   const page = 1,
-    maxPokemonLimit = 893,
+    maxPokemonLimit = 100,
     perPage = 24
   const expectedActions = [
     { type: 'POKEMON_LIST_LOADING' },
@@ -70,11 +70,17 @@ test('should create an action failing to get Pokemon list', async () => {
 test('should create an action to get Pokemon detail successfully', async () => {
   const store = mockStore({})
   const pokemon = 'pokemon1'
+  const payload = {
+    types: ['type1', 'type2'],
+    moves: ['move1', 'move2'],
+    sprites:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
+  }
   const expectedActions = [
     { type: 'POKEMON_DETAIL_LOADING' },
     {
       type: 'POKEMON_DETAIL_SUCCESS',
-      payload: pokemonDetailResultData,
+      payload,
       pokemonName: pokemon,
     },
   ]
@@ -102,10 +108,8 @@ test('should create an action to add Pokemon to My Pokemon List successfully', (
   const pokemon = {
     name: 'pokemon1',
     nickname: 'pokemon1',
-    sprites: {
-      front_default:
-        'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
-    },
+    sprites:
+      'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
   }
   uuidv4.mockImplementation(() => 'testid')
   const expectedActions = [

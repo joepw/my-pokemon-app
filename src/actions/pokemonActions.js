@@ -37,9 +37,18 @@ export const GetPokemon = (pokemon) => async (dispatch) => {
 
     const res = await axios.get(`https://pokeapi.co/api/v2/pokemon/${pokemon}`)
 
+    const { name, moves, types, sprites } = res.data
+
+    const payload = {
+      name,
+      moves: moves.slice(0, 8).map((e) => e.move.name),
+      types: types.map((e) => e.type.name),
+      sprites: sprites.front_default,
+    }
+
     dispatch({
       type: 'POKEMON_DETAIL_SUCCESS',
-      payload: res.data,
+      payload,
       pokemonName: pokemon,
     })
   } catch (err) {

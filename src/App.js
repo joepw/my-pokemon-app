@@ -1,10 +1,10 @@
 import React from 'react'
 import './App.css'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import PokemonList from './containers/PokemonList'
-import Pokemon from './containers/Pokemon'
-import MyPokemon from './containers/MyPokemon'
-import Navbar from './containers/Nav/Navbar'
+import Navbar from './components/Nav/Navbar'
+import PokemonList from './components/PokemonList/PokemonList'
+import Pokemon from './components/PokemonDetail/PokemonDetail'
+import MyPokemon from './components/MyPokemon/MyPokemon'
 
 function App() {
   return (

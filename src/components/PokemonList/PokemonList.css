@@ -1,0 +1,11 @@
+.load-more {
+  display: flex;
+  justify-content: center;
+}
+
+.load-more__btn {
+  background-color: #1c8696;
+  padding: 10px 20px;
+  color: #fff;
+  border-radius: 20px;
+}

@@ -1,7 +1,7 @@
 import React from 'react'
-import { cleanup, fireEvent, render, screen } from '@testing-library/react'
+import { fireEvent, render, screen } from '@testing-library/react'
 import { Provider } from 'react-redux'
-import Store from '../Store'
+import { Store } from '../../Store'
 import MyPokemon from './MyPokemon'
 import { createMemoryHistory } from 'history'
 import { Router } from 'react-router-dom'
@@ -23,31 +23,28 @@ beforeEach(() => {
     </Router>
   )
 })
-afterEach(() => {
-  cleanup()
-})
 
 test('renders My Pokemon page correctly', () => {
-  expect(screen.getByText('You have no pokemon')).toBeInTheDocument()
+  expect(screen.getByText('You have no Pokémon')).toBeInTheDocument()
   expect(screen.queryByText('pokemon1')).not.toBeInTheDocument()
   expect(screen.queryByText('Release')).not.toBeInTheDocument()
   Store.dispatch({
     type: 'POKEMON_ADD_SUCCESS',
     payload: { ...pokemon, id: 1 },
   })
-  expect(screen.queryByText('You have no pokemon')).not.toBeInTheDocument()
+  expect(screen.queryByText('You have no Pokémon')).not.toBeInTheDocument()
   expect(screen.getByText('pokemon1')).toBeInTheDocument()
   expect(screen.getByText('Release')).toBeInTheDocument()
 })
 
-test('releases a pokemon', () => {
+test('releases a Pokemon', () => {
   expect(screen.getByText('pokemon1')).toBeInTheDocument()
   expect(screen.getByText('Release')).toBeInTheDocument()
-  expect(screen.queryByText('You have no pokemon')).not.toBeInTheDocument()
+  expect(screen.queryByText('You have no Pokémon')).not.toBeInTheDocument()
   fireEvent.click(screen.getByText('Release'))
-  expect(screen.getByText('Release Pokemon ?')).toBeInTheDocument()
+  expect(screen.getByText('Release Pokémon ?')).toBeInTheDocument()
   fireEvent.click(screen.getByText('Yes'))
   expect(screen.queryByText('pokemon1')).not.toBeInTheDocument()
   expect(screen.queryByText('Release')).not.toBeInTheDocument()
-  expect(screen.getByText('You have no pokemon')).toBeInTheDocument()
+  expect(screen.getByText('You have no Pokémon')).toBeInTheDocument()
 })

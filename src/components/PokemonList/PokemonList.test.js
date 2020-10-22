@@ -1,8 +1,8 @@
 import React from 'react'
-import { cleanup, fireEvent, render, screen } from '@testing-library/react'
-import App from '../App'
+import { fireEvent, render, screen } from '@testing-library/react'
+import App from '../../App'
 import { Provider } from 'react-redux'
-import Store from '../Store'
+import { Store } from '../../Store'
 import { Router } from 'react-router-dom'
 import { createMemoryHistory } from 'history'
 import axios from 'axios'
@@ -35,9 +35,6 @@ beforeEach(() => {
     </Router>
   )
 })
-afterEach(() => {
-  cleanup()
-})
 afterAll(() => {
   mock.restore()
 })
@@ -60,12 +57,12 @@ test('can load more Pokemon', async () => {
 
 test('handles server exceptions', async () => {
   fireEvent.click(screen.getByText('Load More'))
-  expect(await screen.findByText('Unable to get pokemon'))
+  expect(await screen.findByText('Unable to get Pokémon'))
 })
 
 test('navigates to Pokemon Details page', async () => {
   fireEvent.click(screen.getByText('pokemon1'))
-  expect(screen.getByTestId('nav-title')).toHaveTextContent('Pokemon Detail')
+  expect(screen.getByTestId('nav-title')).toHaveTextContent('Pokémon Detail')
   expect(await screen.findByText('pokemon1')).toBeInTheDocument()
   expect(screen.getByTestId('pokemon-detail-name')).toHaveTextContent(
     'pokemon1'

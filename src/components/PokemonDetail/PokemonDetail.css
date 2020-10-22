@@ -1,0 +1,55 @@
+.detail {
+  padding: 0 20px;
+  text-align: center;
+}
+
+.detail__section {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.detail__item {
+  width: 40%;
+  border: 1px solid #1c8696;
+  padding: 10px;
+  margin: 10px;
+  border-radius: 20px;
+  background: #f1fff2;
+  color: #1c8696;
+  max-width: 150px;
+}
+
+.catch-btn {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background-color: #36cea7;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 50px;
+  transition: 0.5s;
+}
+
+@media screen and (min-width: 800px) {
+  .catch-btn {
+    left: 250px;
+  }
+}
+
+.nickname {
+  border-top-style: hidden;
+  border-right-style: hidden;
+  border-left-style: hidden;
+  border-bottom-style: groove;
+  text-align: center;
+  margin: 20px 0;
+  font-size: large;
+}
+
+.nickname:focus {
+  outline: none;
+}

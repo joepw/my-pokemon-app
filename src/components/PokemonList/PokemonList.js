@@ -1,7 +1,8 @@
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import { GetPokemonList } from '../actions/pokemonActions'
-import isEmpty from '../utils/isEmpty'
+import { GetPokemonList } from '../../actions/pokemonActions'
+import isEmpty from '../../utils/isEmpty'
+import './PokemonList.css'
 
 const PokemonList = (props) => {
   const maxPokemonLimit = 893
@@ -24,7 +25,7 @@ const PokemonList = (props) => {
     pokemonList.page <= Math.floor(maxPokemonLimit / perPage) && (
       <div className='load-more'>
         <div
-          className='load-more-btn'
+          className='load-more__btn'
           onClick={() => FetchData(pokemonList.page + 1)}
         >
           Load More
@@ -34,7 +35,7 @@ const PokemonList = (props) => {
 
   const ShowData = () => {
     return (
-      <div className={'list-wrapper'}>
+      <div className={'pokemon-list'}>
         {pokemonList.data.map((el, i) => {
           return (
             <div
@@ -50,7 +51,7 @@ const PokemonList = (props) => {
                   alt={el.name}
                 />
               </div>
-              <p className='text-capitalize'>{el.name}</p>
+              <p className='text--capitalize'>{el.name}</p>
               <div>Owned: {myPokemonList.owned[el.name] || 0}</div>
             </div>
           )

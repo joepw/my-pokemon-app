@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
-import { ReleasePokemon } from '../actions/pokemonActions'
+import { ReleasePokemon } from '../../actions/pokemonActions'
+import './MyPokemon.css'
 
 const MyPokemon = (props) => {
   const dispatch = useDispatch()
@@ -22,16 +23,14 @@ const MyPokemon = (props) => {
 
   const Modal = () => {
     return (
-      <div className={overlay ? 'overlay visible' : 'overlay'}>
-        <section className='modal-main'>
-          <h3>Release Pokemon ?</h3>
-          <div className='modal-btn-wrapper'>
-            <div className='modal-btn' onClick={() => setOverlay(false)}>
-              No
-            </div>
-            <div className='modal-btn' onClick={Release}>
-              Yes
-            </div>
+      <div className={overlay ? 'overlay overlay--visible' : 'overlay'}>
+        <section className={overlay ? 'modal modal--open' : 'modal'}>
+          <h3 className='modal__title'>Release Pokémon ?</h3>
+          <div className='modal__btn' onClick={() => setOverlay(false)}>
+            No
+          </div>
+          <div className='modal__btn' onClick={Release}>
+            Yes
           </div>
         </section>
       </div>
@@ -41,7 +40,7 @@ const MyPokemon = (props) => {
   const ShowData = () => {
     if (myPokemonList.data.length) {
       return (
-        <div className={'list-wrapper'}>
+        <div className={'pokemon-list'}>
           {myPokemonList.data.map((el, i) => {
             return (
               <div
@@ -49,8 +48,8 @@ const MyPokemon = (props) => {
                 onClick={() => props.history.push(`/pokemon/${el.name}`)}
                 key={i}
               >
-                <div className='pokemon-img-wrapper'>
-                  <img src={el.sprites.front_default} alt={el.name} />
+                <div className='pokemon-item__img-wrapper'>
+                  <img src={el.sprites} alt={el.name} />
                 </div>
                 <p>{el.nickname}</p>
                 <div className='release-btn' onClick={(e) => Select(e, el)}>
@@ -66,9 +65,9 @@ const MyPokemon = (props) => {
 
     return (
       <p className='error-msg'>
-        You have no pokemon
+        You have no Pokémon
         <br />
-        <Link to={'/'}>Find Pokemon</Link>
+        <Link to={'/'}>Find Pokémon</Link>
       </p>
     )
   }
