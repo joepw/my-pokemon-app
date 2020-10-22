@@ -11,7 +11,7 @@ export const GetPokemonList = (page, maxPokemonLimit, perPage) => async (
     const offset = (page - 1) * perPage
     let limit = perPage
     if (offset === Math.floor(maxPokemonLimit / perPage) * perPage)
-      limit = maxPokemonLimit % perPage
+      limit = maxPokemonLimit % perPage // Handle last page of API result
 
     const res = await axios.get(
       `https://pokeapi.co/api/v2/pokemon?limit=${limit}&offset=${offset}`
@@ -41,7 +41,7 @@ export const GetPokemon = (pokemon) => async (dispatch) => {
 
     const payload = {
       name,
-      moves: moves.slice(0, 8).map((e) => e.move.name),
+      moves: moves.slice(0, 8).map((e) => e.move.name), // Get maximum 8 moves
       types: types.map((e) => e.type.name),
       sprites: sprites.front_default,
     }

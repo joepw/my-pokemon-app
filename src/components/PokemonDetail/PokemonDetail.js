@@ -5,26 +5,27 @@ import { GetPokemon, AddPokemon } from '../../actions/pokemonActions'
 import isEmpty from '../../utils/isEmpty'
 import './PokemonDetail.css'
 
-const Pokemon = (props) => {
+const PokemonDetail = (props) => {
   const pokemonName = props.match.params.pokemon
-  const dispatch = useDispatch()
   const pokemonState = useSelector((state) => state.Pokemon)
   const [overlay, setOverlay] = useState(false)
   const [catchSuccess, setCatchSuccess] = useState(false)
   const [nickname, setNickname] = useState(pokemonName)
+  const dispatch = useDispatch()
   useEffect(() => {
     dispatch(GetPokemon(pokemonName))
     // eslint-disable-next-line
   }, [])
 
-  const ShowData = () => {
+  const PokemonData = () => {
     if (pokemonState.loading) {
       return <p className='loading'>Loading...</p>
     }
+
     if (!isEmpty(pokemonState.data[pokemonName])) {
       const pokeData = pokemonState.data[pokemonName]
       return (
-        <div>
+        <>
           <h1 data-testid='pokemon-detail-name' className='text--capitalize'>
             {pokemonName}
           </h1>
@@ -49,73 +50,59 @@ const Pokemon = (props) => {
               )
             })}
           </section>
-          <div className='catch-btn' onClick={Catch}>
+          <div className='catch-btn' onClick={catchPokemon}>
             <h2>Catch !</h2>
           </div>
-        </div>
-      )
-    }
-
-    if (pokemonState.errorMsg !== '') {
-      return (
-        <p className='error-msg'>
-          {pokemonState.errorMsg}
-          <br />
-          <Link to={'/'}>Find Pokémon</Link>
-        </p>
+        </>
       )
     }
 
     return (
       <p className='error-msg'>
-        Unable to find Pokémon
+        {pokemonState.errorMsg || 'Unable to find Pokémon'}
         <br />
         <Link to={'/'}>Find Pokémon</Link>
       </p>
     )
   }
 
-  const Catch = () => {
-    const success = Math.random() < 0.5
-    setCatchSuccess(success)
-    setOverlay(true)
-  }
-
-  const ModalContent = () => {
-    return catchSuccess ? (
-      <div>
-        Give it a nickname ?<br />
-        <input
-          className='nickname'
-          type='text'
-          value={nickname}
-          onChange={(e) => setNickname(e.target.value)}
-        />
-        <div className='modal__btn' onClick={AddPoke}>
-          OK
-        </div>
-      </div>
-    ) : (
-      <div className='modal__btn' onClick={() => setOverlay(false)}>
-        close
-      </div>
-    )
-  }
-
-  const Modal = () => {
+  const CatchModal = () => {
     return (
       <div className={overlay ? 'overlay overlay--visible' : 'overlay'}>
         <section className={overlay ? 'modal modal--open' : 'modal'}>
           <h3 className='modal__title'>
             {catchSuccess ? 'Catch Success !' : 'Catch Failed !'}
           </h3>
-          {ModalContent()}
+          {catchSuccess ? (
+            <>
+              Give it a nickname ?<br />
+              <input
+                className='nickname'
+                type='text'
+                value={nickname}
+                onChange={(e) => setNickname(e.target.value)}
+              />
+              <div className='modal__btn' onClick={addPokemon}>
+                OK
+              </div>
+            </>
+          ) : (
+            <div className='modal__btn' onClick={() => setOverlay(false)}>
+              close
+            </div>
+          )}
         </section>
       </div>
     )
   }
 
-  const AddPoke = () => {
+  const catchPokemon = () => {
+    const success = Math.random() < 0.5
+    setCatchSuccess(success)
+    setOverlay(true)
+  }
+
+  const addPokemon = () => {
     const { name, sprites } = pokemonState.data[pokemonName]
     const pokeData = { name, sprites, nickname }
     dispatch(AddPokemon(pokeData))
@@ -124,10 +111,10 @@ const Pokemon = (props) => {
 
   return (
     <div className='detail'>
-      {ShowData()}
-      {Modal()}
+      {PokemonData()}
+      {CatchModal()}
     </div>
   )
 }
 
-export default Pokemon
+export default PokemonDetail

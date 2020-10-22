@@ -56,7 +56,7 @@ test('handles Pokémon Detail not found', async () => {
   expect(screen.queryByText('Catch !')).not.toBeInTheDocument()
 })
 
-test('handles failed Pokemon catch', async () => {
+test('handles failed Pokémon catch', async () => {
   global.Math.random = () => 1
   expect(await screen.findByText('pokemon1')).toBeInTheDocument()
   fireEvent.click(screen.getByText('Catch !'))

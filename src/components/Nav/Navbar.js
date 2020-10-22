@@ -28,13 +28,13 @@ const Navbar = () => {
   }
 
   const NavTitle = () => {
+    let title = 'Pokémon List'
     if (location.pathname === '/my-pokemon') {
-      return <h3 data-testid='nav-title'>My Pokémon</h3>
+      title = 'My Pokémon'
     } else if (location.pathname.match(/\/pokemon\/.*/g)) {
-      return <h3 data-testid='nav-title'>Pokémon Detail</h3>
-    } else {
-      return <h3 data-testid='nav-title'>Pokémon List</h3>
+      title = 'Pokémon Detail'
     }
+    return <h3 data-testid='nav-title'>{title}</h3>
   }
 
   const SideNav = () => {
@@ -64,12 +64,14 @@ const Navbar = () => {
   }
 
   return (
-    <nav className='nav'>
-      {NavIcon()}
-      {NavTitle()}
+    <>
+      <nav className='nav'>
+        {NavIcon()}
+        {NavTitle()}
+        <div style={{ width: '50px' }}></div>
+      </nav>
       {SideNav()}
-      <div style={{ width: '50px' }}></div>
-    </nav>
+    </>
   )
 }
 

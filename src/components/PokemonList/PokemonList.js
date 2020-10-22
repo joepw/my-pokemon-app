@@ -5,41 +5,23 @@ import isEmpty from '../../utils/isEmpty'
 import './PokemonList.css'
 
 const PokemonList = (props) => {
-  const maxPokemonLimit = 893
+  const maxPokemonLimit = 893 // Limit API Call until index 893
   const perPage = 24
-  const dispatch = useDispatch()
   const pokemonList = useSelector((state) => state.PokemonList)
   const myPokemonList = useSelector((state) => state.MyPokemon)
+  const dispatch = useDispatch()
   useEffect(() => {
-    if (isEmpty(pokemonList.data)) FetchData(pokemonList.page)
+    if (isEmpty(pokemonList.data)) fetchData(pokemonList.page)
     // eslint-disable-next-line
   }, [])
 
-  const FetchData = (page = 1) => {
-    dispatch(GetPokemonList(page, maxPokemonLimit, perPage))
-  }
-
-  const LoadMore = () =>
-    !pokemonList.loading &&
-    !isEmpty(pokemonList.data) &&
-    pokemonList.page <= Math.floor(maxPokemonLimit / perPage) && (
-      <div className='load-more'>
-        <div
-          className='load-more__btn'
-          onClick={() => FetchData(pokemonList.page + 1)}
-        >
-          Load More
-        </div>
-      </div>
-    )
-
-  const ShowData = () => {
+  const PokemonListData = () => {
     return (
-      <div className={'pokemon-list'}>
+      <div className='pokemon-list'>
         {pokemonList.data.map((el, i) => {
           return (
             <div
-              className={'pokemon-item'}
+              className='pokemon-item'
               onClick={() => props.history.push(`/pokemon/${el.name}`)}
               key={i}
             >
@@ -52,22 +34,41 @@ const PokemonList = (props) => {
                 />
               </div>
               <p className='text--capitalize'>{el.name}</p>
-              <div>Owned: {myPokemonList.owned[el.name] || 0}</div>
+              Owned: {myPokemonList.owned[el.name] || 0}
             </div>
           )
         })}
       </div>
     )
   }
+
+  const LoadMore = () =>
+    !pokemonList.loading &&
+    !isEmpty(pokemonList.data) &&
+    pokemonList.page <= Math.floor(maxPokemonLimit / perPage) && (
+      <div className='load-more'>
+        <div
+          className='load-more__btn'
+          onClick={() => fetchData(pokemonList.page + 1)}
+        >
+          Load More
+        </div>
+      </div>
+    )
+
+  const fetchData = (page = 1) => {
+    dispatch(GetPokemonList(page, maxPokemonLimit, perPage))
+  }
+
   return (
-    <div>
-      {ShowData()}
+    <>
+      {PokemonListData()}
       {pokemonList.loading && <p className='loading'>Loading...</p>}
       {pokemonList.errorMsg !== '' && (
         <p className='error-msg'>{pokemonList.errorMsg}</p>
       )}
       {LoadMore()}
-    </div>
+    </>
   )
 }
 
