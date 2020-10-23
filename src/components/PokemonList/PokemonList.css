@@ -1,11 +1,21 @@
+.pokemon-owned {
+  font-size: 14px;
+  color: brown;
+}
+
 .load-more {
   display: flex;
   justify-content: center;
+  margin-top: 36px;
 }
 
 .load-more__btn {
-  background-color: #1c8696;
-  padding: 10px 20px;
-  color: #fff;
+  background-color: darkorange;
+  padding: 12px 20px;
   border-radius: 20px;
+  cursor: pointer;
+}
+
+.load-more__btn:hover {
+  background-color: orange;
 }

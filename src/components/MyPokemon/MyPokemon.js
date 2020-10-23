@@ -17,20 +17,26 @@ const MyPokemon = (props) => {
         <div className='pokemon-list'>
           {myPokemon.data.map((el, i) => {
             return (
-              <div
-                className='pokemon-item'
-                onClick={() => props.history.push(`/pokemon/${el.name}`)}
-                key={i}
-              >
-                <LazyLoad height={96} once>
-                  <img src={el.sprites} alt={el.name} width='96' height='96' />
-                </LazyLoad>
-                <p>{el.nickname}</p>
+              <div className='pokemon-item-container' key={i}>
                 <div
-                  className='release-btn'
-                  onClick={(e) => selectPokemon(e, el)}
+                  className='pokemon-item'
+                  onClick={() => props.history.push(`/pokemon/${el.name}`)}
                 >
-                  Release
+                  <LazyLoad height={96} once>
+                    <img
+                      src={el.sprites}
+                      alt={el.name}
+                      width='96'
+                      height='96'
+                    />
+                  </LazyLoad>
+                  <p>{el.nickname}</p>
+                  <div
+                    className='release-btn'
+                    onClick={(e) => selectPokemon(e, el)}
+                  >
+                    Release
+                  </div>
                 </div>
               </div>
             )

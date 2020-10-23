@@ -12,16 +12,7 @@ body {
 }
 
 .App {
-  padding: 50px 0 80px;
-  max-width: 960px;
-  margin: auto;
-  transition: 0.5s;
-}
-
-@media screen and (min-width: 800px) {
-  .App {
-    padding-left: 250px;
-  }
+  padding: 56px 0 80px;
 }
 
 a {
@@ -37,12 +28,12 @@ p {
 
 .loading {
   text-align: center;
-  padding: 10px 0;
+  padding: 12px 0;
 }
 
 .error-msg {
   text-align: center;
-  margin: 30px 0;
+  margin: 36px 0;
 }
 
 .text--capitalize {
@@ -52,19 +43,25 @@ p {
 .pokemon-list {
   display: flex;
   flex-wrap: wrap;
-  margin-bottom: 30px;
+  margin: 0 auto;
 }
 
-.pokemon-item {
-  width: 33.33%;
-  padding: 10px;
+.pokemon-item-container {
+  width: 100%;
+  padding: 8px;
   text-align: center;
 }
 
-@media screen and (min-width: 450px) {
-  .pokemon-item {
-    width: 25%;
-  }
+.pokemon-item {
+  border: 1px solid;
+  border-radius: 8px;
+  padding: 8px;
+  cursor: pointer;
+  background-color: beige;
+}
+
+.pokemon-item:hover {
+  background-color: aliceblue;
 }
 
 /* Overlay */
@@ -83,14 +80,6 @@ p {
   visibility: visible;
 }
 
-@media screen and (min-width: 800px) {
-  .overlay {
-    visibility: visible;
-    background: transparent;
-    width: 0;
-  }
-}
-
 /* Modals */
 .modal {
   position: fixed;
@@ -100,11 +89,11 @@ p {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  padding: 10px;
+  padding: 12px;
   text-align: center;
   box-shadow: 0 0 8px 1px #333;
   border-radius: 8px;
-  max-width: 350px;
+  max-width: 360px;
   display: none;
 }
 
@@ -119,9 +108,48 @@ p {
 .modal__btn {
   display: inline-block;
   background-color: #36cea7;
-  padding: 10px;
-  margin: 0 10px 20px;
+  padding: 12px;
+  margin: 0 12px 20px;
   width: 100px;
   border-radius: 20px;
   color: #fff;
+  cursor: pointer;
+}
+
+.modal__btn:hover {
+  background-color: #216353;
+}
+
+@media screen and (min-width: 280px) {
+  .pokemon-item-container {
+    width: 50%;
+  }
+}
+
+@media screen and (min-width: 360px) {
+  .pokemon-item-container {
+    width: 33.33%;
+  }
+}
+
+@media screen and (min-width: 720px) {
+  .pokemon-list {
+    max-width: 640px;
+  }
+
+  .pokemon-item-container {
+    max-width: 160px;
+  }
+}
+
+@media screen and (min-width: 960px) {
+  .App {
+    margin-left: 240px;
+  }
+
+  .overlay {
+    visibility: visible;
+    background: transparent;
+    width: 0;
+  }
 }

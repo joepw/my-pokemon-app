@@ -26,36 +26,43 @@ const PokemonDetail = (props) => {
       const pokeData = pokemonState.data[pokemonName]
       return (
         <>
-          <h1 data-testid='pokemon-detail-name' className='text--capitalize'>
-            {pokemonName}
-          </h1>
-          <img
-            src={pokeData.sprites}
-            alt={pokemonName}
-            width='96'
-            height='96'
-          />
-          <h2>Types</h2>
-          <section className='detail__section'>
-            {pokeData.types.map((el, i) => {
-              return (
-                <div className='detail__item' key={i}>
-                  {el}
-                </div>
-              )
-            })}
-          </section>
-          <h2>Moves</h2>
-          <section className='detail__section'>
-            {pokeData.moves.map((el, i) => {
-              return (
-                <div className='detail__item' key={i}>
-                  {el}
-                </div>
-              )
-            })}
-          </section>
-          <div className='catch-btn' onClick={catchPokemon}>
+          <div className='detail-section head'>
+            <h1 data-testid='pokemon-detail-name' className='text--capitalize'>
+              {pokemonName}
+            </h1>
+            <img
+              src={pokeData.sprites}
+              alt={pokemonName}
+              width='96'
+              height='96'
+            />
+            <div className='catch-btn catch-btn--head' onClick={catchPokemon}>
+              <h3 className='catch-btn__title'>Catch !</h3>
+            </div>
+          </div>
+          <div className='detail-section body'>
+            <h2>Types</h2>
+            <section className='detail__item-container'>
+              {pokeData.types.map((el, i) => {
+                return (
+                  <div className='detail__item' key={i}>
+                    {el}
+                  </div>
+                )
+              })}
+            </section>
+            <h2>Moves</h2>
+            <section className='detail__item-container'>
+              {pokeData.moves.map((el, i) => {
+                return (
+                  <div className='detail__item' key={i}>
+                    {el}
+                  </div>
+                )
+              })}
+            </section>
+          </div>
+          <div className='catch-btn catch-btn--bottom' onClick={catchPokemon}>
             <h2>Catch !</h2>
           </div>
         </>

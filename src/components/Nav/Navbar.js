@@ -98,7 +98,7 @@ const Navbar = () => {
       <nav className='nav'>
         {NavIcon()}
         {NavTitle()}
-        <div style={{ width: '50px' }}></div>
+        <div style={{ width: '48px' }}></div>
       </nav>
       {SideNav()}
     </>

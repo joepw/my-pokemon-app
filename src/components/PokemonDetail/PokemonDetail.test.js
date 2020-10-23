@@ -43,7 +43,7 @@ test('renders Pokémon Detail page correctly', async () => {
   expect(screen.getByText('Moves')).toBeInTheDocument()
   expect(screen.getByText('move1')).toBeInTheDocument()
   expect(screen.getByText('move2')).toBeInTheDocument()
-  expect(screen.getByText('Catch !')).toBeInTheDocument()
+  expect(screen.getAllByText('Catch !'))
 })
 
 test('handles Pokémon Detail not found', async () => {
@@ -60,7 +60,7 @@ test('handles failed Pokémon catch', async () => {
   global.Math.random = () => 1
   expect(await screen.findByText('Loading...')).toBeInTheDocument()
   expect(await screen.findByText('pokemon1')).toBeInTheDocument()
-  fireEvent.click(screen.getByText('Catch !'))
+  fireEvent.click(screen.getAllByText('Catch !')[0])
   expect(screen.getByText('Catch Failed !')).toBeInTheDocument()
 })
 
@@ -68,7 +68,7 @@ test('handles successful Pokémon catch', async () => {
   global.Math.random = () => 0
   expect(await screen.findByText('Loading...')).toBeInTheDocument()
   expect(await screen.findByText('pokemon1')).toBeInTheDocument()
-  fireEvent.click(screen.getByText('Catch !'))
+  fireEvent.click(screen.getAllByText('Catch !')[0])
   expect(screen.getByText('Catch Success !')).toBeInTheDocument()
   expect(screen.getByText('Give it a nickname ?')).toBeInTheDocument()
   expect(screen.getByDisplayValue('pokemon1')).toBeInTheDocument()
@@ -81,7 +81,7 @@ test('change nickname of the caught Pokémon', async () => {
   global.Math.random = () => 0
   expect(await screen.findByText('Loading...')).toBeInTheDocument()
   expect(await screen.findByText('pokemon1')).toBeInTheDocument()
-  fireEvent.click(screen.getByText('Catch !'))
+  fireEvent.click(screen.getAllByText('Catch !')[0])
   userEvent.type(screen.getByDisplayValue('pokemon1'), 'new pokemon')
   fireEvent.click(screen.getByText('OK'))
   history.push('/my-pokemon')

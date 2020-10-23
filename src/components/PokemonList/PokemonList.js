@@ -21,28 +21,43 @@ const PokemonList = (props) => {
       <div className='pokemon-list'>
         {pokemonList.data.map((el, i) => {
           return (
-            <div
-              className='pokemon-item'
-              onClick={() => props.history.push(`/pokemon/${el.name}`)}
-              key={i}
-            >
-              <LazyLoad height={96} once>
-                <img
-                  src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
-                    i + 1
-                  }.png`}
-                  alt={el.name}
-                  width='96'
-                  height='96'
-                />
-              </LazyLoad>
-              <p className='text--capitalize'>{el.name}</p>
-              Owned: {myPokemonList.owned[el.name] || 0}
+            <div className='pokemon-item-container' key={i}>
+              <div
+                className='pokemon-item'
+                onClick={() => props.history.push(`/pokemon/${el.name}`)}
+              >
+                <LazyLoad height={96} once>
+                  <img
+                    src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
+                      i + 1
+                    }.png`}
+                    alt={el.name}
+                    width='96'
+                    height='96'
+                  />
+                </LazyLoad>
+                <p className='text--capitalize'>{el.name}</p>
+                <p className='pokemon-owned'>
+                  Owned: {myPokemonList.owned[el.name] || 0}
+                </p>
+              </div>
             </div>
           )
         })}
       </div>
     )
+  }
+
+  const PokemonListPlaceholder = () => {
+    let res = []
+    for (let i = 0; i < 24; i++) {
+      res.push(
+        <div className='pokemon-item-container' key={i}>
+          <div className='pokemon-item' style={{ height: '158px' }}></div>
+        </div>
+      )
+    }
+    return pokemonList.loading && <div className='pokemon-list'>{res}</div>
   }
 
   const LoadMore = () =>
@@ -66,7 +81,7 @@ const PokemonList = (props) => {
   return (
     <>
       {PokemonListData()}
-      {pokemonList.loading && <p className='loading'>Loading...</p>}
+      {PokemonListPlaceholder()}
       {pokemonList.errorMsg !== '' && (
         <p className='error-msg'>{pokemonList.errorMsg}</p>
       )}
