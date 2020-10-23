@@ -67,10 +67,6 @@ p {
   }
 }
 
-.pokemon-img-wrapper {
-  height: 96px;
-}
-
 /* Overlay */
 .overlay {
   position: fixed;

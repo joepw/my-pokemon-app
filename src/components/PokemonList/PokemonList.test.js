@@ -40,7 +40,7 @@ afterAll(() => {
 })
 
 test('renders Pokemon List correctly', async () => {
-  expect(screen.getByText('Loading...')).toBeInTheDocument()
+  expect(await screen.findByText('Loading...')).toBeInTheDocument()
   expect(await screen.findByText('pokemon1')).toBeInTheDocument()
   expect(screen.queryByText('Loading...')).not.toBeInTheDocument()
   expect(screen.getByText('Load More')).toBeInTheDocument()

@@ -4,9 +4,9 @@ import userEvent from '@testing-library/user-event'
 import App from '../../App'
 import { Provider } from 'react-redux'
 import { Store } from '../../Store'
+import { createMemoryHistory } from 'history'
 import { Router } from 'react-router-dom'
 import axios from 'axios'
-import { createMemoryHistory } from 'history'
 import MockAdapter from 'axios-mock-adapter'
 
 const mock = new MockAdapter(axios, { delayResponse: 500 })
@@ -58,6 +58,7 @@ test('handles Pokémon Detail not found', async () => {
 
 test('handles failed Pokémon catch', async () => {
   global.Math.random = () => 1
+  expect(await screen.findByText('Loading...')).toBeInTheDocument()
   expect(await screen.findByText('pokemon1')).toBeInTheDocument()
   fireEvent.click(screen.getByText('Catch !'))
   expect(screen.getByText('Catch Failed !')).toBeInTheDocument()
@@ -65,6 +66,7 @@ test('handles failed Pokémon catch', async () => {
 
 test('handles successful Pokémon catch', async () => {
   global.Math.random = () => 0
+  expect(await screen.findByText('Loading...')).toBeInTheDocument()
   expect(await screen.findByText('pokemon1')).toBeInTheDocument()
   fireEvent.click(screen.getByText('Catch !'))
   expect(screen.getByText('Catch Success !')).toBeInTheDocument()
@@ -72,15 +74,17 @@ test('handles successful Pokémon catch', async () => {
   expect(screen.getByDisplayValue('pokemon1')).toBeInTheDocument()
   fireEvent.click(screen.getByText('OK'))
   history.push('/my-pokemon')
-  expect(screen.getByText('pokemon1')).toBeInTheDocument()
+  expect(await screen.findByText('pokemon1')).toBeInTheDocument()
 })
 
-test('change nickname of the caught Pokémon', () => {
+test('change nickname of the caught Pokémon', async () => {
   global.Math.random = () => 0
+  expect(await screen.findByText('Loading...')).toBeInTheDocument()
+  expect(await screen.findByText('pokemon1')).toBeInTheDocument()
   fireEvent.click(screen.getByText('Catch !'))
   userEvent.type(screen.getByDisplayValue('pokemon1'), 'new pokemon')
   fireEvent.click(screen.getByText('OK'))
   history.push('/my-pokemon')
   expect(screen.getByTestId('nav-title')).toHaveTextContent('My Pokémon')
-  expect(screen.getByText('new pokemon')).toBeInTheDocument()
+  expect(await screen.findByText('new pokemon')).toBeInTheDocument()
 })

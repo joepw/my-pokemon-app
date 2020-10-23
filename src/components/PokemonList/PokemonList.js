@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { GetPokemonList } from '../../actions/pokemonActions'
 import isEmpty from '../../utils/isEmpty'
+import LazyLoad from 'react-lazyload'
 import './PokemonList.css'
 
 const PokemonList = (props) => {
@@ -25,7 +26,7 @@ const PokemonList = (props) => {
               onClick={() => props.history.push(`/pokemon/${el.name}`)}
               key={i}
             >
-              <div className='pokemon-img-wrapper'>
+              <LazyLoad height={96} once>
                 <img
                   src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${
                     i + 1
@@ -34,7 +35,7 @@ const PokemonList = (props) => {
                   width='96'
                   height='96'
                 />
-              </div>
+              </LazyLoad>
               <p className='text--capitalize'>{el.name}</p>
               Owned: {myPokemonList.owned[el.name] || 0}
             </div>

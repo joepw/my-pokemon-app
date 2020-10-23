@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import { Link } from 'react-router-dom'
 import { ReleasePokemon } from '../../actions/pokemonActions'
+import LazyLoad from 'react-lazyload'
 import './MyPokemon.css'
 
 const MyPokemon = (props) => {
@@ -21,9 +22,9 @@ const MyPokemon = (props) => {
                 onClick={() => props.history.push(`/pokemon/${el.name}`)}
                 key={i}
               >
-                <div className='pokemon-img-wrapper'>
+                <LazyLoad height={96} once>
                   <img src={el.sprites} alt={el.name} width='96' height='96' />
-                </div>
+                </LazyLoad>
                 <p>{el.nickname}</p>
                 <div
                   className='release-btn'

@@ -1,10 +1,16 @@
 import React from 'react'
 import './App.css'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import Navbar from './components/Nav/Navbar'
-import PokemonList from './components/PokemonList/PokemonList'
-import Pokemon from './components/PokemonDetail/PokemonDetail'
-import MyPokemon from './components/MyPokemon/MyPokemon'
+import loadable from '@loadable/component'
+
+const Navbar = loadable(() => import('./components/Nav/Navbar'))
+const PokemonList = loadable(() =>
+  import('./components/PokemonList/PokemonList')
+)
+const PokemonDetail = loadable(() =>
+  import('./components/PokemonDetail/PokemonDetail')
+)
+const MyPokemon = loadable(() => import('./components/MyPokemon/MyPokemon'))
 
 function App() {
   return (
@@ -12,7 +18,7 @@ function App() {
       <Navbar />
       <Switch>
         <Route path={'/'} exact component={PokemonList} />
-        <Route path={'/pokemon/:pokemon'} exact component={Pokemon} />
+        <Route path={'/pokemon/:pokemon'} exact component={PokemonDetail} />
         <Route path={'/my-pokemon'} exact component={MyPokemon} />
         <Redirect to={'/'} />
       </Switch>
