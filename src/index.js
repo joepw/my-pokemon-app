@@ -5,6 +5,7 @@ import { Provider } from 'react-redux'
 import { PersistGate } from 'redux-persist/integration/react'
 import { Store, persistedStore } from './Store'
 import { BrowserRouter } from 'react-router-dom'
+import * as serviceWorker from './serviceWorker'
 
 ReactDOM.render(
   <React.StrictMode>
@@ -18,3 +19,5 @@ ReactDOM.render(
   </React.StrictMode>,
   document.getElementById('root')
 )
+
+serviceWorker.register()
