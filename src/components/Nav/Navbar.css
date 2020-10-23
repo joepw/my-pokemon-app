@@ -14,7 +14,7 @@
 }
 
 .nav__icon {
-  padding: 0 10px;
+  margin: 0 10px;
 }
 
 .sidenav {
@@ -23,10 +23,9 @@
   top: 0;
   left: 0;
   bottom: 0;
-  width: 50%;
+  width: 250px;
   transform: translateX(-100%);
   transition: 0.5s;
-  max-width: 250px;
 }
 
 .sidenav--open {
@@ -34,12 +33,23 @@
 }
 
 .sidenav__links {
-  padding: 20px;
-  display: block;
+  padding: 30px;
+  display: flex;
+  align-items: center;
 }
 
 .sidenav__links.active {
   background-color: rgba(0, 0, 0, 0.1);
+}
+
+.sidenav__icon {
+  margin-right: 10px;
+}
+
+.sidenav__close-btn {
+  position: absolute;
+  top: 12px;
+  right: 12px;
 }
 
 .sidenav__header {
@@ -60,7 +70,7 @@
     left: 250px;
   }
 
-  .nav__icon--menu {
+  .nav__icon--hidden {
     visibility: hidden;
   }
 

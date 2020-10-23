@@ -31,6 +31,8 @@ const PokemonList = (props) => {
                     i + 1
                   }.png`}
                   alt={el.name}
+                  width='96'
+                  height='96'
                 />
               </div>
               <p className='text--capitalize'>{el.name}</p>

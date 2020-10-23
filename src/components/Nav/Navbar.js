@@ -1,28 +1,36 @@
 import React, { useState } from 'react'
 import { NavLink, useHistory, useLocation } from 'react-router-dom'
-import BackButton from '../../img/arrow-left.png'
-import MenuButton from '../../img/menu.png'
+import BackIcon from '../../img/arrow-left.png'
+import MenuIcon from '../../img/menu.png'
+import CloseIcon from '../../img/close.png'
+import SearchIcon from '../../img/magnify.png'
+import PokeballIcon from '../../img/pokeball.png'
+import AppLogo from '../../img/app-logo.png'
 import './Navbar.css'
 
 const Navbar = () => {
   const history = useHistory()
   const location = useLocation()
-  const [open, setOpen] = useState(false)
+  const [sidenavOpen, setSidenavOpen] = useState(false)
 
   const NavIcon = () => {
     return location.pathname.match(/\/pokemon\/.*/g) ? (
       <img
         className='nav__icon'
-        src={BackButton}
+        src={BackIcon}
         alt='Back'
+        width='30'
+        height='30'
         onClick={() => history.goBack()}
       />
     ) : (
       <img
-        className='nav__icon nav__icon--menu'
-        src={MenuButton}
+        className='nav__icon nav__icon--hidden'
+        src={MenuIcon}
         alt='Menu'
-        onClick={() => setOpen(true)}
+        width='30'
+        height='30'
+        onClick={() => setSidenavOpen(true)}
       />
     )
   }
@@ -40,22 +48,44 @@ const Navbar = () => {
   const SideNav = () => {
     return (
       <div
-        className={open ? 'overlay overlay--visible' : 'overlay'}
-        onClick={() => setOpen(false)}
+        className={sidenavOpen ? 'overlay overlay--visible' : 'overlay'}
+        onClick={() => setSidenavOpen(false)}
       >
         <div
           data-testid='sidenav'
-          className={open ? 'sidenav sidenav--open' : 'sidenav'}
+          className={sidenavOpen ? 'sidenav sidenav--open' : 'sidenav'}
         >
+          <img
+            className='sidenav__close-btn nav__icon--hidden'
+            src={CloseIcon}
+            alt='Close'
+            width='30'
+            height='30'
+            onClick={() => setSidenavOpen(false)}
+          />
           <div className='sidenav__header'>
-            <img src='/logo192.png' alt='App Logo' width='50' />
+            <img src={AppLogo} alt='App Logo' width='60' height='60' />
             <div className='sidenav__title'>My Pokémon App</div>
             <div className='sidenav__author'>by Jonathan Prasetya</div>
           </div>
           <NavLink className='sidenav__links' exact to={'/'}>
+            <img
+              className='sidenav__icon'
+              src={SearchIcon}
+              alt='Pokemon List'
+              width='36'
+              height='36'
+            />
             Pokémon List
           </NavLink>
           <NavLink className='sidenav__links' exact to={'/my-pokemon'}>
+            <img
+              className='sidenav__icon'
+              src={PokeballIcon}
+              alt='My Pokemon'
+              width='36'
+              height='36'
+            />
             My Pokémon
           </NavLink>
         </div>

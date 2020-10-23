@@ -29,7 +29,12 @@ const PokemonDetail = (props) => {
           <h1 data-testid='pokemon-detail-name' className='text--capitalize'>
             {pokemonName}
           </h1>
-          <img src={pokeData.sprites} alt='' />
+          <img
+            src={pokeData.sprites}
+            alt={pokemonName}
+            width='96'
+            height='96'
+          />
           <h2>Types</h2>
           <section className='detail__section'>
             {pokeData.types.map((el, i) => {

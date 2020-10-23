@@ -22,7 +22,7 @@ const MyPokemon = (props) => {
                 key={i}
               >
                 <div className='pokemon-img-wrapper'>
-                  <img src={el.sprites} alt={el.name} />
+                  <img src={el.sprites} alt={el.name} width='96' height='96' />
                 </div>
                 <p>{el.nickname}</p>
                 <div
