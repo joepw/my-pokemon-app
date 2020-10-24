@@ -16,7 +16,7 @@ const PokemonDetailReducer = (state = DefaultState, action) => {
       return {
         ...state,
         loading: false,
-        errorMsg: 'Unable to find pokemon',
+        errorMsg: 'Unable to find Pokémon',
       }
     case 'POKEMON_DETAIL_SUCCESS':
       return {

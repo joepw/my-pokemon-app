@@ -26,10 +26,10 @@ const PokemonDetail = (props) => {
       const pokeData = pokemonState.data[pokemonName]
       return (
         <>
+          <h1 data-testid='pokemon-detail-name' className='detail-name text--capitalize'>
+            {pokemonName}
+          </h1>
           <div className='detail-section'>
-            <h1 data-testid='pokemon-detail-name' className='text--capitalize'>
-              {pokemonName}
-            </h1>
             <img
               src={pokeData.sprites}
               alt={pokemonName}

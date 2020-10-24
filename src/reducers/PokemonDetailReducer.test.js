@@ -27,7 +27,7 @@ test('should handle POKEMON_DETAIL_FAIL', () => {
         type: 'POKEMON_DETAIL_FAIL',
       }
     )
-  ).toEqual({ loading: false, errorMsg: 'Unable to find pokemon' })
+  ).toEqual({ loading: false, errorMsg: 'Unable to find Pokémon' })
 })
 
 test('should handle POKEMON_DETAIL_SUCCESS', () => {
