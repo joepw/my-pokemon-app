@@ -44,16 +44,20 @@
   margin: 0 auto;
 }
 
+.loading {
+  text-align: center;
+  margin: 100px auto 0;
+}
+
 .catch-btn {
-  background-color: #36cea7;
-  color: #fff;
+  background-color: #ffa49e;
   align-items: center;
   justify-content: center;
   cursor: pointer;
 }
 
 .catch-btn:hover {
-  background-color: rgb(53, 148, 116);
+  background-color: rgba(255, 164, 158, 0.8);
 }
 
 .catch-btn--top {
@@ -61,6 +65,7 @@
   border-radius: 8px;
   max-width: 160px;
   margin: 0 auto;
+  box-shadow: 0 6px #999;
 }
 
 .catch-btn__title {

@@ -1,13 +1,14 @@
 .release-btn {
-  background-color: coral;
+  background-color: #b37554;
   padding: 8px;
   margin: 8px auto;
   max-width: 100px;
   border-radius: 20px;
   color: #fff;
   cursor: pointer;
+  box-shadow: 0 3px #999;
 }
 
 .release-btn:hover {
-  background-color: #ddd;
+  background-color: rgba(179, 117, 84, 0.8);
 }

@@ -6,11 +6,12 @@
   height: 56px;
   display: flex;
   align-items: center;
-  background-color: #bbfeaf;
+  background-color: #bbffaa;
   color: #45686e;
   font-size: large;
   justify-content: space-between;
   transition: 0.5s;
+  box-shadow: 0px 3px 5px 0px #aaa;
 }
 
 .nav__icon {
@@ -19,7 +20,7 @@
 }
 
 .sidenav {
-  background-image: linear-gradient(#def7da, #fff 50%);
+  background-image: linear-gradient(#d0ffc4, #fff 50%);
   position: fixed;
   top: 0;
   left: 0;

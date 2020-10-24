@@ -36,7 +36,7 @@ const PokemonList = (props) => {
                     height='96'
                   />
                 </LazyLoad>
-                <p className='text--capitalize'>{el.name}</p>
+                <p className='pokemon-name text--capitalize'>{el.name}</p>
                 <p className='pokemon-owned'>
                   Owned: {myPokemonList.owned[el.name] || 0}
                 </p>

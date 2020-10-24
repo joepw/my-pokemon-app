@@ -26,14 +26,9 @@ p {
   padding: 0;
 }
 
-.loading {
-  text-align: center;
-  padding: 12px 0;
-}
-
 .error-msg {
   text-align: center;
-  margin: 36px 0;
+  margin: 100px auto 0;
 }
 
 .text--capitalize {
@@ -57,11 +52,16 @@ p {
   border-radius: 8px;
   padding: 8px;
   cursor: pointer;
-  background-color: beige;
+  background-color: #ffdb9e;
+  box-shadow: 0 6px #999;
 }
 
 .pokemon-item:hover {
-  background-color: aliceblue;
+  background-color: rgba(255, 219, 158, 0.6);
+}
+
+.pokemon-name {
+  font-weight: 500;
 }
 
 /* Overlay */
@@ -114,6 +114,7 @@ p {
   border-radius: 20px;
   color: #fff;
   cursor: pointer;
+  box-shadow: 0 3px #999;
 }
 
 .modal__btn:hover {

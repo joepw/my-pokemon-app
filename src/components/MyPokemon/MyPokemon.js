@@ -30,7 +30,7 @@ const MyPokemon = (props) => {
                       height='96'
                     />
                   </LazyLoad>
-                  <p>{el.nickname}</p>
+                  <p className='pokemon-name'>{el.nickname}</p>
                   <div
                     className='release-btn'
                     onClick={(e) => selectPokemon(e, el)}
