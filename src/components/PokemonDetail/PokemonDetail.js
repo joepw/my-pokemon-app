@@ -26,7 +26,7 @@ const PokemonDetail = (props) => {
       const pokeData = pokemonState.data[pokemonName]
       return (
         <>
-          <div className='detail-section head'>
+          <div className='detail-section'>
             <h1 data-testid='pokemon-detail-name' className='text--capitalize'>
               {pokemonName}
             </h1>
@@ -36,31 +36,60 @@ const PokemonDetail = (props) => {
               width='96'
               height='96'
             />
-            <div className='catch-btn catch-btn--head' onClick={catchPokemon}>
+            <div className='catch-btn catch-btn--top' onClick={catchPokemon}>
               <h3 className='catch-btn__title'>Catch !</h3>
             </div>
           </div>
-          <div className='detail-section body'>
-            <h2>Types</h2>
-            <section className='detail__item-container'>
-              {pokeData.types.map((el, i) => {
-                return (
-                  <div className='detail__item' key={i}>
-                    {el}
-                  </div>
-                )
-              })}
-            </section>
-            <h2>Moves</h2>
-            <section className='detail__item-container'>
-              {pokeData.moves.map((el, i) => {
-                return (
-                  <div className='detail__item' key={i}>
-                    {el}
-                  </div>
-                )
-              })}
-            </section>
+          <div className='detail-section'>
+            {pokeData.types.length && (
+              <>
+                <h2>Types</h2>
+                <section className='detail__item-container'>
+                  {pokeData.types.map((el, i) => {
+                    return (
+                      <div className='detail__item' key={i}>
+                        {el}
+                      </div>
+                    )
+                  })}
+                </section>
+              </>
+            )}
+          </div>
+          <div className='detail-section'>
+            {pokeData.stats.length && (
+              <>
+                <h2>Stats</h2>
+                <section className='stats'>
+                  {pokeData.stats.map((el, i) => {
+                    return (
+                      <div className='stats__item' key={i}>
+                        <span className='stats__title text--capitalize'>
+                          {el.name}
+                        </span>
+                        <span className='stats__value'>{el.stat}</span>
+                      </div>
+                    )
+                  })}
+                </section>
+              </>
+            )}
+          </div>
+          <div className='moves'>
+            {pokeData.moves.length && (
+              <>
+                <h2>Moves</h2>
+                <section className='detail__item-container'>
+                  {pokeData.moves.map((el, i) => {
+                    return (
+                      <div className='detail__item' key={i}>
+                        {el}
+                      </div>
+                    )
+                  })}
+                </section>
+              </>
+            )}
           </div>
           <div className='catch-btn catch-btn--bottom' onClick={catchPokemon}>
             <h2>Catch !</h2>

@@ -17,6 +17,10 @@ mock.onGet('https://pokeapi.co/api/v2/pokemon/pokemon1').reply(200, {
     front_default:
       'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
   },
+  stats: [
+    { base_stat: 10, stat: { name: 'stat1' } },
+    { base_stat: 20, stat: { name: 'stat2' } },
+  ],
 })
 
 const history = createMemoryHistory()
@@ -43,6 +47,9 @@ test('renders Pokémon Detail page correctly', async () => {
   expect(screen.getByText('Moves')).toBeInTheDocument()
   expect(screen.getByText('move1')).toBeInTheDocument()
   expect(screen.getByText('move2')).toBeInTheDocument()
+  expect(screen.getByText('Stats')).toBeInTheDocument()
+  expect(screen.getByText('stat1')).toBeInTheDocument()
+  expect(screen.getByText('stat2')).toBeInTheDocument()
   expect(screen.getAllByText('Catch !'))
 })
 
@@ -53,6 +60,7 @@ test('handles Pokémon Detail not found', async () => {
   expect(screen.getByText('Find Pokémon')).toBeInTheDocument()
   expect(screen.queryByText('Types')).not.toBeInTheDocument()
   expect(screen.queryByText('Moves')).not.toBeInTheDocument()
+  expect(screen.queryByText('Stats')).not.toBeInTheDocument()
   expect(screen.queryByText('Catch !')).not.toBeInTheDocument()
 })
 

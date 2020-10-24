@@ -63,6 +63,10 @@ test('should create an action to get Pokemon detail successfully', async () => {
       moves: ['move1', 'move2'],
       sprites:
         'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
+      stats: [
+        { name: 'stat1', stat: 10 },
+        { name: 'stat2', stat: 20 },
+      ],
     },
     pokemonDetailResultData = {
       types: [{ type: { name: 'type1' } }, { type: { name: 'type2' } }],
@@ -71,6 +75,10 @@ test('should create an action to get Pokemon detail successfully', async () => {
         front_default:
           'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
       },
+      stats: [
+        { base_stat: 10, stat: { name: 'stat1' } },
+        { base_stat: 20, stat: { name: 'stat2' } },
+      ],
     },
     expectedActions = [
       { type: 'POKEMON_DETAIL_LOADING' },

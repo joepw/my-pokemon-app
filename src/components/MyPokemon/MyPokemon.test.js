@@ -68,6 +68,10 @@ test('navigates to Pokemon Details page', async () => {
       front_default:
         'https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/1.png',
     },
+    stats: [
+      { base_stat: 10, stat: { name: 'stat1' } },
+      { base_stat: 20, stat: { name: 'stat2' } },
+    ],
   })
   Store.dispatch({
     type: 'POKEMON_ADD_SUCCESS',
